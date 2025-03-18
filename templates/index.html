@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trucknetic - India's First Truck Booking Marketplace</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            z-index: 1000;
+            display: none;
+            animation: slideIn 0.3s ease-out;
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        .notification.success {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .notification.error {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-bold text-gray-800">
+                        TRUCK<span class="text-green-500">NETIC</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-green-600">Home</a>
+                    <a href="#why-us" class="text-gray-700 hover:text-green-600">Why Us</a>
+                    <a href="#solutions" class="text-gray-700 hover:text-green-600">Solutions</a>
+                    <a href="#bookings" class="text-gray-700 hover:text-green-600">My Bookings</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section min-h-screen flex items-center pt-16">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap items-center">
+                <div class="w-full md:w-1/2 text-white">
+                    <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                        Ship Smarter.<br>
+                        <span class="text-4xl md:text-5xl">Worry Less.</span><br>
+                        <span class="text-3xl md:text-4xl">Deliver More</span>
+                    </h1>
+                    <p class="text-xl mb-8 opacity-90">India's first truck booking marketplace redefining the way goods move at the touch of a button.</p>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <div class="bg-white p-8 rounded-lg shadow-2xl">
+                        <h2 class="text-2xl font-bold mb-6 text-gray-800">Request a Load now!</h2>
+                        <form id="bookingForm" class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Pickup Location</label>
+                                <div class="relative">
+                                    <i class="fas fa-map-marker-alt absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                    <input type="text" name="pickup_location" placeholder="Enter pickup location" required 
+                                           class="w-full p-3 pl-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Destination</label>
+                                <div class="relative">
+                                    <i class="fas fa-map-marker absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                    <input type="text" name="destination" placeholder="Enter destination" required 
+                                           class="w-full p-3 pl-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                                </div>
+                            </div>
+                            <button type="submit" 
+                                    class="w-full bg-green-500 text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-600 transition duration-300">
+                                Request now
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bookings Section -->
+    <section id="bookings" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16">My Bookings</h2>
+            <div id="bookingsList" class="grid grid-cols-1 gap-6">
+                <!-- Bookings will be populated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-green-500 text-white p-4 rounded-full shadow-lg hidden hover:bg-green-600 transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Custom JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM Content Loaded');
+            
+            const backToTopButton = document.getElementById('backToTop');
+            const notification = document.getElementById('notification');
+            const bookingForm = document.getElementById('bookingForm');
+            const bookingsList = document.getElementById('bookingsList');
+            
+            console.log('Form element:', bookingForm);
+            
+            function showNotification(message, type) {
+                if (!notification) return;
+                notification.textContent = message;
+                notification.className = `notification ${type}`;
+                notification.style.display = 'block';
+                
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 3000);
+            }
+
+            async function loadBookings() {
+                if (!bookingsList) return;
+                
+                try {
+                    console.log('Fetching bookings...');
+                    const response = await fetch('/api/bookings');
+                    console.log('Bookings response:', response);
+                    
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch bookings');
+                    }
+                    
+                    const data = await response.json();
+                    console.log('Bookings data:', data);
+                    
+                    if (!data.bookings || data.bookings.length === 0) {
+                        bookingsList.innerHTML = `
+                            <div class="text-center text-gray-500">
+                                <p class="text-lg">No bookings found</p>
+                                <p class="mt-2">Create your first booking using the form above</p>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    bookingsList.innerHTML = data.bookings.map(booking => `
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-semibold mb-2">Booking #${booking.id}</h3>
+                                    <div class="space-y-2">
+                                        <p class="text-gray-600">
+                                            <i class="fas fa-map-marker-alt text-green-500 mr-2"></i>
+                                            From: ${booking.pickup_location}
+                                        </p>
+                                        <p class="text-gray-600">
+                                            <i class="fas fa-map-marker text-green-500 mr-2"></i>
+                                            To: ${booking.destination}
+                                        </p>
+                                    </div>
+                                </div>
+                                <span class="px-3 py-1 rounded-full text-sm ${
+                                    booking.status === 'Pending' ? 'bg-yellow-100 text-yellow-800' :
+                                    booking.status === 'Confirmed' ? 'bg-green-100 text-green-800' :
+                                    'bg-gray-100 text-gray-800'
+                                }">${booking.status}</span>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-4">
+                                <i class="far fa-clock mr-1"></i>
+                                Created: ${new Date(booking.created_at).toLocaleString()}
+                            </p>
+                        </div>
+                    `).join('');
+                } catch (error) {
+                    console.error('Error loading bookings:', error);
+                    showNotification('Failed to load bookings', 'error');
+                }
+            }
+
+            if (bookingForm) {
+                console.log('Adding form submit event listener');
+                bookingForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    console.log('Form submitted');
+
+                    const pickupLocation = bookingForm.querySelector('input[name="pickup_location"]').value;
+                    const destination = bookingForm.querySelector('input[name="destination"]').value;
+
+                    console.log('Form values:', { pickupLocation, destination });
+
+                    if (!pickupLocation || !destination) {
+                        showNotification('Please fill in all fields', 'error');
+                        return;
+                    }
+
+                    const formData = {
+                        pickup_location: pickupLocation,
+                        destination: destination
+                    };
+
+                    console.log('Sending data:', formData);
+
+                    try {
+                        console.log('Making POST request to /api/book');
+                        const response = await fetch('/api/book', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(formData)
+                        });
+
+                        console.log('Response status:', response.status);
+                        const data = await response.json();
+                        console.log('Response data:', data);
+
+                        if (response.ok) {
+                            showNotification('Booking created successfully!', 'success');
+                            bookingForm.reset();
+                            await loadBookings();
+                            
+                            const bookingsSection = document.getElementById('bookings');
+                            if (bookingsSection) {
+                                bookingsSection.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        } else {
+                            showNotification(data.error || 'Failed to create booking', 'error');
+                        }
+                    } catch (error) {
+                        console.error('Error submitting form:', error);
+                        showNotification('An error occurred. Please try again.', 'error');
+                    }
+                });
+            }
+
+            if (backToTopButton) {
+                window.addEventListener('scroll', () => {
+                    if (window.pageYOffset > 300) {
+                        backToTopButton.classList.remove('hidden');
+                    } else {
+                        backToTopButton.classList.add('hidden');
+                    }
+                });
+
+                backToTopButton.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+            // Load bookings on page load
+            loadBookings();
+        });
+    </script>
+</body>
+</html>
